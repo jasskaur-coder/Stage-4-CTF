@@ -7,6 +7,7 @@ const authRoutes = require("./routes/auth");
 const profileRoutes = require("./routes/profile");
 const adminRoutes = require("./routes/admin");
 const internalRoutes = require("./routes/internal");
+const uploadRoutes = require("./routes/upload");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use("/api", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/internal", internalRoutes);
+app.use("/api/upload", uploadRoutes);
 // 🔓 IDOR Vulnerability
 
 app.listen(5000, () => {

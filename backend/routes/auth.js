@@ -7,19 +7,26 @@ const SECRET = "investigation2026"; // Weak secret
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
-  db.get(
-    `SELECT * FROM users WHERE username='${username}' AND password='${password}'`,
-    (err, user) => {
-      if (!user) return res.status(401).json({ error: "Invalid credentials" });
+  // 🔥 SQL Injection (INTENTIONAL)
+  const query = "SELECT * FROM users WHERE username='" + username + "' AND password='" + password + "'";
 
-      // 🔥 Weak token format
-      const token = Buffer.from(
-        `${user.username}:${user.role}:${SECRET}`
-      ).toString("base64");
-
-      res.json({ token });
+  db.get(query, (err, user) => {
+    if (err) {
+      console.log("DB ERROR:", err);
+      return res.status(500).json({ error: "Server error" });
     }
-  );
+
+    if (!user) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    // 🔥 Weak token (INTENTIONAL)
+    const token = Buffer.from(
+      user.username + ":" + user.role + ":" + SECRET
+    ).toString("base64");
+
+    res.json({ token });
+  });
 });
 
 module.exports = router;
