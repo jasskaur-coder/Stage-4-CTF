@@ -1,19 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Layout from "../components/Layout";
 
 export default function Admin() {
-  const [secret, setSecret] = useState("");
-
-  const loadSecret = () => {
-    setSecret("FLAG{stage4_hidden_admin_access}");
-  };
-
   useEffect(() => {
-    // subtle hint in console
     console.log("admin: logs module initializing...");
-
-    // 👇 USE the function (fixes error)
-    loadSecret();
   }, []);
 
   return (
@@ -36,18 +26,13 @@ export default function Admin() {
             Administrative actions and secret controls.
           </p>
 
-          {/* subtle UI hint */}
           <p style={{ color: "#888", fontSize: "13px" }}>
             System logs service active...
           </p>
 
-          {/* optional misdirection */}
           <p style={{ color: "#555", fontSize: "11px", marginTop: "10px" }}>
             Some modules may not be visible in UI.
           </p>
-
-          {}
-          <span style={{ display: "none" }}>{secret}</span>
         </div>
       </div>
     </Layout>

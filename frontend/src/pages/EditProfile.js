@@ -36,7 +36,7 @@ export default function EditProfile() {
   },
   {
     headers: {
-      Authorization: `Bearer ${token}`, // ✅ FIXED
+      Authorization: `Bearer ${token}`, 
     },
   }
 );
