@@ -30,17 +30,17 @@ export default function EditProfile() {
       const token = localStorage.getItem("token");
 
       const res = await axios.put(
-        "https://stage-4-ctf.onrender.com/api/login",
-        {
-          username: username,
-          role: storedUser?.role, 
-        },
-        {
-          headers: {
-            Authorization:' Bearer ${token} ',
-          },
-        }
-      );
+  "https://stage-4-ctf.onrender.com/api/profile",
+  {
+    username: username,
+    role: storedUser?.role,
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`, // ✅ FIXED
+    },
+  }
+);
 
       const updatedUser = {
         ...res.data.user,
@@ -64,15 +64,15 @@ export default function EditProfile() {
       const formData = new FormData();
       formData.append("file", file);
 
-      const res = await axios.post(
-        "https://stage-4-ctf.onrender.com/api/login",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+     const res = await axios.post(
+  "https://stage-4-ctf.onrender.com/api/upload",
+  formData,
+  {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  }
+);
 
       setMessage(res.data);
     } catch (err) {
