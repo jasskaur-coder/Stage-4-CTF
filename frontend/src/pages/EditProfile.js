@@ -24,20 +24,20 @@ export default function EditProfile() {
     }
   };
 
-  // 🔥 UPDATE USERNAME (WITH VULNERABILITY)
+  
   const handleUpdate = async () => {
     try {
       const token = localStorage.getItem("token");
 
       const res = await axios.put(
-        "http://localhost:5000/api/profile",
+        "https://stage-4-ctf.onrender.com/api/login",
         {
           username: username,
-          role: storedUser?.role, // 🔥 vulnerable field
+          role: storedUser?.role, 
         },
         {
           headers: {
-            Authorization:' Bearer ${token} ', // ✅ FIXED
+            Authorization:' Bearer ${token} ',
           },
         }
       );
@@ -54,7 +54,6 @@ export default function EditProfile() {
     }
   };
 
-  // 🔥 UPLOAD AVATAR (CTF FEATURE)
   const handleUpload = async () => {
     if (!file) {
       setMessage("Please select a file");
@@ -66,7 +65,7 @@ export default function EditProfile() {
       formData.append("file", file);
 
       const res = await axios.post(
-        "http://localhost:5000/api/upload",
+        "https://stage-4-ctf.onrender.com/api/login",
         formData,
         {
           headers: {
