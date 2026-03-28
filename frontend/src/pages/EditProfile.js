@@ -27,8 +27,7 @@ export default function EditProfile() {
   
   const handleUpdate = async () => {
     try {
-      const token = localStorage.getItem("token");
-
+      const token = localStorage.getItem("token") || "";
       const res = await axios.put(
   "https://stage-4-ctf.onrender.com/api/profile",
   {
