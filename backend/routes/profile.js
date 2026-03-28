@@ -4,7 +4,6 @@ const db = require("../db");
 
 console.log("Profile route loaded");
 
-// 🔥 EXISTING VULNERABLE ROUTE (SQLi + IDOR)
 router.get("/:id", (req, res) => {
   console.log("Profile route hit");
 
@@ -27,7 +26,6 @@ router.get("/:id", (req, res) => {
   );
 });
 
-// 🔥 MASS ASSIGNMENT VULNERABILITY (INTENDED)
 router.put("/", (req, res) => {
   const { username, role } = req.body;
 
@@ -37,7 +35,7 @@ router.put("/", (req, res) => {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  // ⚠️ VULNERABLE: blindly trusting user input
+ 
   const updatedUser = {
     username: username,
     role: role

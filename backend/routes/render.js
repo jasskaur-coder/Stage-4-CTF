@@ -5,7 +5,7 @@ const ejs = require("ejs");
 router.get("/", (req, res) => {
     const input = req.query.name || "Guest";
 
-    // weak filter (intentional)
+    
     if (input.includes("require")) {
         return res.send("Blocked");
     }

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const verifyToken = require("../middleware/auth");
 
-// 🔥 EXISTING ROUTE (UNCHANGED)
+
 router.get("/secret", verifyToken, (req, res) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ error: "Admins only" });
@@ -14,7 +14,7 @@ router.get("/secret", verifyToken, (req, res) => {
   });
 });
 
-// 🔥 FINAL LOGS ROUTE (WITH HIDDEN ENCODED HINT)
+
 router.get("/logs", verifyToken, (req, res) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ error: "Admins only" });

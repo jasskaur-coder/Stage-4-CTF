@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require("../db");
 
 
-// 🔥 EXISTING ROUTE (UNCHANGED - SQL Injection)
+
 router.get("/search", (req, res) => {
   const q = req.query.q;
 

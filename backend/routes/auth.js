@@ -2,12 +2,11 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
-const SECRET = "investigation2026"; // Weak secret
+const SECRET = "investigation2026"; 
 
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
-  // 🔥 SQL Injection (INTENTIONAL)
   const query = "SELECT * FROM users WHERE username='" + username + "' AND password='" + password + "'";
 
   db.get(query, (err, user) => {
@@ -20,7 +19,7 @@ router.post("/login", (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // 🔥 Weak token (INTENTIONAL)
+ 
     const token = Buffer.from(
       user.username + ":" + user.role + ":" + SECRET
     ).toString("base64");

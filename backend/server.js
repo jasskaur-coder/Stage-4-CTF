@@ -21,8 +21,10 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/internal", internalRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/render", renderRoutes);
-// 🔓 IDOR Vulnerability
 
-app.listen(5000, () => {
-  console.log("Stage 4 Backend running on port 5000");
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
